@@ -76,7 +76,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("Поле обязательно")).should(visible, Duration.ofSeconds(5));
+        $(withText("Поле обязательно для заполнения")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -89,7 +89,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("недоступна")).should(visible, Duration.ofSeconds(5));
+        $(withText("Доставка в выбранный город недоступна")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -98,7 +98,7 @@ public class RegistrationTest {
         String planningDate = getLocalDate(6);
         $x("//input[@placeholder=\"Город\"]").val("Санкт-Петербург");
         $x("//input[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(planningDate);
-        $x("//input[@name=\"name\"]").val("Семён Семёнов");
+        $x("//input[@name=\"name\"]").val("Иван Семёнов");
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
@@ -126,11 +126,11 @@ public class RegistrationTest {
         String planningDate = getLocalDate(6);
         $x("//input[@placeholder=\"Город\"]").val("Санкт-Петербург");
         $x("//input[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(planningDate);
-        $x("//input[@name=\"name\"]").val("14567 1564");
+        $x("//input[@name=\"name\"]").val("47147 7948");
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("только русские буквы, пробелы и дефисы")).should(visible);
+        $(withText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы")).should(visible);
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -143,7 +143,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("только русские буквы, пробелы и дефисы")).should(visible);
+        $(withText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы")).should(visible);
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -152,11 +152,11 @@ public class RegistrationTest {
         String planningDate = getLocalDate(6);
         $x("//input[@placeholder=\"Город\"]").val("Санкт-Петербург");
         $x("//input[@placeholder=\"Дата встречи\"]").doubleClick().sendKeys(planningDate);
-        $x("//input[@name=\"name\"]").val("Иван Иванов!");
+        $x("//input[@name=\"name\"]").val("Иван Иванов*");
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("только русские буквы, пробелы и дефисы")).should(visible);
+        $(withText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы")).should(visible);
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -169,7 +169,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("89999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("11 цифр")).should(visible, Duration.ofSeconds(5));
+        $(withText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -182,7 +182,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+7999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("11 цифр")).should(visible, Duration.ofSeconds(5));
+        $(withText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -195,7 +195,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+7(999)-999-99 99");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("11 цифр")).should(visible, Duration.ofSeconds(5));
+        $(withText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -208,7 +208,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("обязательно для заполнения")).should(visible, Duration.ofSeconds(5));
+        $(withText("Поле обязательно для заполнения")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -221,7 +221,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("дату невозможен")).should(visible, Duration.ofSeconds(5));
+        $(withText("Заказ на выбранную дату невозможен")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -234,7 +234,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("дату невозможен")).should(visible, Duration.ofSeconds(5));
+        $(withText("Заказ на выбранную дату невозможен")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 
@@ -247,7 +247,7 @@ public class RegistrationTest {
         $x("//*[@data-test-id=\"phone\"]/span/span/input").val("+79999999999");
         $x("//*[@class=\"checkbox__text\"]").click();
         $x("//*[@class=\"button__text\"]").click();
-        $(withText("дату невозможен")).should(visible, Duration.ofSeconds(5));
+        $(withText("Заказ на выбранную дату невозможен")).should(visible, Duration.ofSeconds(5));
         $x("//*[@data-test-id=\"notification\"]").shouldNot(visible, Duration.ofSeconds(15));
     }
 

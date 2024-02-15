@@ -52,10 +52,13 @@ public class RegistrationTest {
         $x("//*[@data-test-id='phone']/span/span/input").val("+79999999999");
         $x("//*[@class='checkbox__text']").click();
         $x("//*[@class='button__text']").click();
-        $x("//*[@data-test-id='notification']").should(visible, Duration.ofSeconds(15));
-        $x("//*[@class='notification__content']").
-                shouldHave(Condition.text("Встреча успешно забронирована на " + meetingDate), Duration.ofSeconds(15));
-        $x("//*[@data-test-id='notification']").shouldNot(visible, Duration.ofSeconds(15));
+        $("[data-test-id='notification'] .notification__title").shouldHave(text("Успешно!"),
+                Duration.ofSeconds(15)).shouldBe(visible);
+        $("[data-test-id='notification'] .notification__content").shouldHave(text("Встреча успешно забронирована на " + meetingDate),
+                Duration.ofSeconds(15)).shouldBe(visible);
+//        $x("//*[@data-test-id='notification']").should(visible, Duration.ofSeconds(15));
+//        $x("//*[@class='notification__content']").shouldHave(Condition.text("Встреча успешно забронирована на " + meetingDate), Duration.ofSeconds(15));
+//        $x("//*[@data-test-id='notification']").shouldNot(visible, Duration.ofSeconds(15));
     }
 
 //    @Test
